@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RemWord Icon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .icon-container { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>RemWord Icon Generator</h1>
+    <p>This page generates placeholder icons for the RemWord extension. Click "Generate Icons" to create and download all required icon sizes.</p>
+    
+    <button onclick="generateAllIcons()">Generate Icons</button>
+    
+    <div id="iconContainer"></div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Draw background circle
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.4;
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = '#667eea';
+            ctx.fill();
+            
+            // Draw book icon
+            const bookWidth = size * 0.3;
+            const bookHeight = size * 0.25;
+            const bookX = centerX - bookWidth / 2;
+            const bookY = centerY - bookHeight / 2;
+            
+            // Book cover
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(bookX, bookY, bookWidth, bookHeight);
+            
+            // Book spine
+            ctx.fillStyle = '#e0e0e0';
+            ctx.fillRect(bookX, bookY, bookWidth * 0.15, bookHeight);
+            
+            // Book pages (lines)
+            if (size >= 32) {
+                ctx.strokeStyle = '#999999';
+                ctx.lineWidth = 1;
+                const lineSpacing = bookHeight / 5;
+                const lineStartX = bookX + bookWidth * 0.2;
+                const lineEndX = bookX + bookWidth * 0.9;
+                
+                for (let i = 1; i <= 3; i++) {
+                    const lineY = bookY + i * lineSpacing;
+                    ctx.beginPath();
+                    ctx.moveTo(lineStartX, lineY);
+                    ctx.lineTo(lineEndX, lineY);
+                    ctx.stroke();
+                }
+            }
+            
+            // Add "A" letter for translation
+            if (size >= 48) {
+                ctx.fillStyle = '#667eea';
+                ctx.font = `bold ${size * 0.15}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText('A', centerX + bookWidth * 0.3, centerY + bookHeight * 0.7);
+            }
+        }
+        
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function generateAllIcons() {
+            const container = document.getElementById('iconContainer');
+            container.innerHTML = '';
+            
+            const sizes = [16, 32, 48, 128];
+            
+            sizes.forEach(size => {
+                const div = document.createElement('div');
+                div.className = 'icon-container';
+                
+                const canvas = document.createElement('canvas');
+                drawIcon(canvas, size);
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.textContent = `Download ${size}x${size}`;
+                downloadBtn.onclick = () => downloadCanvas(canvas, `icon${size}.png`);
+                
+                const label = document.createElement('p');
+                label.textContent = `Icon ${size}x${size}`;
+                
+                div.appendChild(label);
+                div.appendChild(canvas);
+                div.appendChild(downloadBtn);
+                container.appendChild(div);
+            });
+        }
+        
+        // Generate icons on page load
+        window.onload = generateAllIcons;
+    </script>
+</body>
+</html>

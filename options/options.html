@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RemWord - Options & Practice</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="../icons/icon48.png" alt="RemWord" class="sidebar-logo">
+        <h1>RemWord</h1>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#dashboard" class="nav-link active" data-section="dashboard">📊 Dashboard</a></li>
+        <li><a href="#vocabulary" class="nav-link" data-section="vocabulary">📚 Vocabulary</a></li>
+        <li><a href="#practice" class="nav-link" data-section="practice">🎯 Practice</a></li>
+        <li><a href="#settings" class="nav-link" data-section="settings">⚙️ Settings</a></li>
+        <li><a href="#help" class="nav-link" data-section="help">❓ Help</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="content-section active">
+        <header class="section-header">
+          <h2>Dashboard</h2>
+          <p>Your vocabulary learning overview</p>
+        </header>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-info">
+              <div class="stat-number" id="dashTotalWords">0</div>
+              <div class="stat-label">Total Words</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-info">
+              <div class="stat-number" id="dashStreak">0</div>
+              <div class="stat-label">Day Streak</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-info">
+              <div class="stat-number" id="dashMastered">0</div>
+              <div class="stat-label">Mastered</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-info">
+              <div class="stat-number" id="dashAccuracy">0%</div>
+              <div class="stat-label">Accuracy</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-charts">
+          <div class="chart-card">
+            <h3>Weekly Progress</h3>
+            <div class="weekly-chart" id="weeklyChart">
+              <!-- Weekly progress chart will be generated here -->
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Recent Activity</h3>
+            <div class="activity-list" id="recentActivity">
+              <!-- Recent activity will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vocabulary Section -->
+      <section id="vocabulary" class="content-section">
+        <header class="section-header">
+          <h2>Vocabulary Management</h2>
+          <div class="section-actions">
+            <input type="text" id="vocabSearch" placeholder="Search vocabulary..." class="search-input">
+            <button id="exportBtn" class="btn btn-secondary">Export</button>
+            <button id="importBtn" class="btn btn-secondary">Import</button>
+          </div>
+        </header>
+
+        <div class="vocabulary-filters">
+          <select id="languageFilter">
+            <option value="">All Languages</option>
+            <option value="en">English</option>
+            <option value="zh">Chinese</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+          </select>
+          <select id="masteryFilter">
+            <option value="">All Mastery Levels</option>
+            <option value="0">New (0)</option>
+            <option value="1">Beginner (1)</option>
+            <option value="2">Learning (2)</option>
+            <option value="3">Familiar (3)</option>
+            <option value="4">Proficient (4)</option>
+            <option value="5">Mastered (5)</option>
+          </select>
+          <button id="clearFilters" class="btn btn-outline">Clear Filters</button>
+        </div>
+
+        <div class="vocabulary-table-container">
+          <table class="vocabulary-table">
+            <thead>
+              <tr>
+                <th>Word</th>
+                <th>Translation</th>
+                <th>Context</th>
+                <th>Source</th>
+                <th>Mastery</th>
+                <th>Added</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="vocabularyTableBody">
+              <!-- Vocabulary items will be loaded here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <button id="prevPage" class="btn btn-outline">Previous</button>
+          <span id="pageInfo">Page 1 of 1</span>
+          <button id="nextPage" class="btn btn-outline">Next</button>
+        </div>
+      </section>
+
+      <!-- Practice Section -->
+      <section id="practice" class="content-section">
+        <header class="section-header">
+          <h2>Practice Exercises</h2>
+          <p>Strengthen your vocabulary with interactive exercises</p>
+        </header>
+
+        <div class="practice-modes">
+          <div class="practice-card" data-mode="multiple-choice">
+            <div class="practice-icon">🎯</div>
+            <h3>Multiple Choice</h3>
+            <p>Choose the correct translation from multiple options</p>
+            <button class="btn btn-primary">Start Practice</button>
+          </div>
+          <div class="practice-card" data-mode="fill-blank">
+            <div class="practice-icon">✏️</div>
+            <h3>Fill in the Blank</h3>
+            <p>Complete sentences with the correct vocabulary</p>
+            <button class="btn btn-primary">Start Practice</button>
+          </div>
+          <div class="practice-card" data-mode="matching">
+            <div class="practice-icon">🔗</div>
+            <h3>Word Matching</h3>
+            <p>Match words with their correct definitions</p>
+            <button class="btn btn-primary">Start Practice</button>
+          </div>
+          <div class="practice-card" data-mode="context">
+            <div class="practice-icon">📝</div>
+            <h3>Context Practice</h3>
+            <p>Use words correctly in different contexts</p>
+            <button class="btn btn-primary">Start Practice</button>
+          </div>
+        </div>
+
+        <!-- Practice Exercise Container (hidden by default) -->
+        <div id="practiceContainer" class="practice-container" style="display: none;">
+          <div class="practice-header">
+            <h3 id="practiceTitle">Practice Exercise</h3>
+            <div class="practice-progress">
+              <span id="practiceProgress">1 / 10</span>
+              <button id="exitPractice" class="btn btn-outline btn-sm">Exit</button>
+            </div>
+          </div>
+          <div id="practiceContent" class="practice-content">
+            <!-- Practice questions will be loaded here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings Section -->
+      <section id="settings" class="content-section">
+        <header class="section-header">
+          <h2>Settings</h2>
+          <p>Customize your RemWord experience</p>
+        </header>
+
+        <div class="settings-groups">
+          <div class="settings-group">
+            <h3>Translation Settings</h3>
+            <div class="setting-item">
+              <label for="defaultTargetLang">Default Target Language:</label>
+              <select id="defaultTargetLang">
+                <option value="zh">Chinese (中文)</option>
+                <option value="es">Spanish (Español)</option>
+                <option value="fr">French (Français)</option>
+                <option value="de">German (Deutsch)</option>
+                <option value="ja">Japanese (日本語)</option>
+                <option value="ko">Korean (한국어)</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label>
+                <input type="checkbox" id="autoTranslateEnabled">
+                Enable automatic translation on text selection
+              </label>
+            </div>
+            <div class="setting-item">
+              <label>
+                <input type="checkbox" id="showDefinitions">
+                Show word definitions when available
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h3>Practice Settings</h3>
+            <div class="setting-item">
+              <label for="dailyGoalSetting">Daily vocabulary goal:</label>
+              <input type="number" id="dailyGoalSetting" min="1" max="100" value="10">
+            </div>
+            <div class="setting-item">
+              <label>
+                <input type="checkbox" id="practiceReminders">
+                Enable daily practice reminders
+              </label>
+            </div>
+            <div class="setting-item">
+              <label for="reminderTime">Reminder time:</label>
+              <input type="time" id="reminderTime" value="19:00">
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h3>Data Management</h3>
+            <div class="setting-item">
+              <button id="exportData" class="btn btn-secondary">Export All Data</button>
+              <button id="importData" class="btn btn-secondary">Import Data</button>
+            </div>
+            <div class="setting-item">
+              <button id="clearAllData" class="btn btn-danger">Clear All Data</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <button id="saveSettings" class="btn btn-primary">Save Settings</button>
+          <button id="resetSettings" class="btn btn-outline">Reset to Defaults</button>
+        </div>
+      </section>
+
+      <!-- Help Section -->
+      <section id="help" class="content-section">
+        <header class="section-header">
+          <h2>Help & Support</h2>
+          <p>Learn how to use RemWord effectively</p>
+        </header>
+
+        <div class="help-content">
+          <div class="help-section">
+            <h3>Getting Started</h3>
+            <ol>
+              <li>Select any text on a webpage to see instant translation</li>
+              <li>Click "Save to Vocabulary" to add words to your collection</li>
+              <li>Use the Practice section to reinforce your learning</li>
+              <li>Track your progress on the Dashboard</li>
+            </ol>
+          </div>
+
+          <div class="help-section">
+            <h3>Features</h3>
+            <ul>
+              <li><strong>Text Selection:</strong> Highlight text to get instant translations</li>
+              <li><strong>Vocabulary Storage:</strong> Save words with context and source</li>
+              <li><strong>Practice Exercises:</strong> Multiple exercise types to reinforce learning</li>
+              <li><strong>Progress Tracking:</strong> Monitor your learning journey</li>
+              <li><strong>Data Export/Import:</strong> Backup and restore your vocabulary</li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h3>Tips for Effective Learning</h3>
+            <ul>
+              <li>Practice regularly - consistency is key to vocabulary retention</li>
+              <li>Review words in context to understand usage better</li>
+              <li>Set realistic daily goals and stick to them</li>
+              <li>Use the mastery system to focus on difficult words</li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h3>Troubleshooting</h3>
+            <ul>
+              <li><strong>Translation not working:</strong> Check your internet connection</li>
+              <li><strong>Words not saving:</strong> Ensure the extension has proper permissions</li>
+              <li><strong>Practice not loading:</strong> Try refreshing the page</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../scripts/database.js"></script>
+  <script src="../scripts/translation.js"></script>
+  <script src="practice.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

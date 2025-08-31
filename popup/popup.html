@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RemWord - Vocabulary Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="logo">
+        <img src="../icons/icon32.png" alt="RemWord" class="logo-icon">
+        <h1>RemWord</h1>
+      </div>
+      <div class="stats-summary">
+        <span class="stat-item">
+          <span class="stat-number" id="totalWords">0</span>
+          <span class="stat-label">Words</span>
+        </span>
+        <span class="stat-item">
+          <span class="stat-number" id="streakDays">0</span>
+          <span class="stat-label">Streak</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+      <button class="action-btn primary" id="practiceBtn">
+        <span class="btn-icon">🎯</span>
+        <span class="btn-text">Practice Now</span>
+      </button>
+      <button class="action-btn secondary" id="reviewBtn">
+        <span class="btn-icon">📚</span>
+        <span class="btn-text">Review Words</span>
+      </button>
+    </section>
+
+    <!-- Recent Vocabulary -->
+    <section class="recent-vocabulary">
+      <h2>Recent Words</h2>
+      <div class="vocabulary-list" id="recentWords">
+        <div class="loading">Loading recent words...</div>
+      </div>
+      <button class="view-all-btn" id="viewAllBtn">View All Vocabulary</button>
+    </section>
+
+    <!-- Daily Progress -->
+    <section class="daily-progress">
+      <h2>Today's Progress</h2>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">
+          <span id="progressCurrent">0</span> / <span id="progressGoal">10</span> words
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Settings -->
+    <section class="quick-settings">
+      <div class="setting-item">
+        <label for="targetLang">Target Language:</label>
+        <select id="targetLang">
+          <option value="zh">Chinese (中文)</option>
+          <option value="es">Spanish (Español)</option>
+          <option value="fr">French (Français)</option>
+          <option value="de">German (Deutsch)</option>
+          <option value="ja">Japanese (日本語)</option>
+          <option value="ko">Korean (한국어)</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <label>
+          <input type="checkbox" id="autoTranslate" checked>
+          Auto-translate on selection
+        </label>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <button class="footer-btn" id="optionsBtn">
+        <span class="btn-icon">⚙️</span>
+        Options
+      </button>
+      <button class="footer-btn" id="helpBtn">
+        <span class="btn-icon">❓</span>
+        Help
+      </button>
+    </footer>
+  </div>
+
+  <script src="../scripts/database.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
